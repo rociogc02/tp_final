@@ -50,7 +50,11 @@ const app = Vue.createApp({
         seleccionarImagen(event) {
             const file = event.target.files[0];
             this.imagenSeleccionada = file;
-            this.imagenUrlTemp = URL.createObjectURL(file);
+            const reader = new FileReader();
+            reader.onload = () => {
+                this.imagenUrlTemp = reader.result;
+            };
+            reader.readAsDataURL(file);
         },
         guardarCambiosPaqueteTuristico() {
             const formData = new FormData();

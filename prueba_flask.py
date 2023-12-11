@@ -175,14 +175,14 @@ def agregar_paquete_turistico():
     imagen = request.files['imagen']
     nombre_imagen = secure_filename(imagen.filename)
 
-    #nombre_base, extension = os.path.splitext(nombre_imagen)
-    #nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"    
-    #imagen.save(os.path.join(ruta_destino, nombre_imagen))
+    nombre_base, extension = os.path.splitext(nombre_imagen)
+    nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"    
+    imagen.save(os.path.join(ruta_destino, nombre_imagen))
 
     if sistema_paquetes.agregar_paquete_turistico(codigo, descripcion, destino, duracion, alojamiento, transporte, actividades, precio, nombre_imagen, proveedor):
-        nombre_base, extension = os.path.splitext(nombre_imagen)
-        nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"
-        imagen.save(os.path.join(ruta_destino, nombre_imagen))
+        #nombre_base, extension = os.path.splitext(nombre_imagen)
+        #nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"
+        #imagen.save(os.path.join(ruta_destino, nombre_imagen))
         return jsonify({"mensaje": "Paquete turístico agregado"}), 201
     else:
         return jsonify({"mensaje": "Paquete turístico ya existe"}), 400
